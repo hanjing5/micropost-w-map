@@ -1,0 +1,7 @@
+<!-- Pagination -->
+<table id="rumors-holder" class="macroposts">
+<% rumors.reverse.each do | rumor| %>
+	<%= render "shared/rumor", :rumor => rumor %>
+<% end %>
+</table>
+

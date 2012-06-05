@@ -1,0 +1,17 @@
+<div id='left'>
+<div id='side_bar' class='link'>
+
+    <%= render 'shared/rumor_form' , :rumor => @rumor %>
+		<br />
+		<%= render 'shared/search' %>
+    <br>
+
+    <%= render 'shared/debug', :location => @location, :rumors => @rumors, :ip => @ip %>
+
+    <table class="rumor">
+      <%= render :partial => 'rumors/rumor', :collection => @feed%>
+    </table>
+
+</div>
+</div>
+<%= render 'shared/maps' , :location => @location, :initial_zoom => @initial_zoom, :rumors => @rumors , :ip => @ip %>

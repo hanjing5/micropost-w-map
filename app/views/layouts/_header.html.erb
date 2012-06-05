@@ -1,0 +1,23 @@
+<!-- Header file -->
+<%= yield :head %>
+
+<header>
+<nav>
+<div class="topbar">
+  <div class="fill">
+    <div class="container">
+      <a class="brand" href="/">Project Title</a>
+      <ul class="nav">
+        <li class=<%=@toolbar_hash['home'] %>><%= link_to "Home", root_path %></li>
+        <li class=<%=@toolbar_hash['people'] %>><%= link_to "People", people_path %></li>
+	</ul>
+      <%= render "people/simple_search", :location => get_coordinates, :ip => get_ip, :remote => false %>
+    </div>
+  </div>
+</div>
+</nav>
+</header>
+<br />
+<br />
+<br />
+

@@ -1,0 +1,20 @@
+<!-- Simple Search -->
+<!-- location, ip -->
+<% if remote %>
+	<%= form_tag( root_path, :method => "get" , :remote => true) do %>
+		<%= render 'people/simple_search_form', :location => @location, :ip => @ip %>
+	<% end %>
+<% else %>
+	<%= form_tag( root_path, :method => "get") do %>
+		<%= render 'people/simple_search_form', :location => @location, :ip => @ip %>
+	<% end %>
+<% end %>
+<!-- Advanced Search -->
+<ul><li>
+<form style="display:inline; padding-left:5px;">
+<!--<%= submit_tag("Advanced Search »" , :class=>"btn") %>-->
+<button class="btn" type="submit">Advanced Search »</button>
+</form>
+</li>
+</ul>
+

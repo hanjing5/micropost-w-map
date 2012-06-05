@@ -1,0 +1,54 @@
+<!-- Miscellanious page -->
+<div class="hero-unit">
+	<% if moderator_signed_in? %>
+		<h2>Welcome, <%= current_moderator.username %>!</h2>
+		<p><%= link_to "Moderator Sign Out", destroy_moderator_session_path, :method => :delete %></p>
+	<% else %>
+		<h2>Miscellanious Page</h2>
+		<p><%= link_to "Moderator Sign In", new_moderator_session_path %></p>
+	<% end %>
+</div>
+<div class="row">
+	<div class="span-one-third">
+		<h3>Site stats</h3>
+		<ul style="list-style: none;" id="site-stats">
+			<li>People: <%= @mp0[:people] %></li>
+			<li>Rumors: <%= @mp0[:rumors] %></li>
+			<li>Up since <%= time_ago_in_words( @mp0[:time] ) %> ago</li>
+		</ul>
+	</div>
+	<div class="span-one-third">
+		<h3>Banlist</h3>
+		<div id="banlist-display">
+			<% if @mp1.nil? || @mp1.empty? %>
+				<p>Nothing here yet!</p>
+			<% else %>
+				<%= will_paginate @mp1 %>
+				<%= render "macroposts/macroposts", :macroposts => @mp1 %>
+			<% end %>
+		</div>
+		<div id="banlist-form">
+			<% if moderator_signed_in? %>
+				<% @meta = { :board => "misc", :section => "b" } %>
+				<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
+			<% end %>
+		</div>
+	</div>
+	<div class="span-one-third">
+		<h3>Updates</h3>
+		<div id="updates-display">
+			<% if @mp2.nil? || @mp2.empty? %>
+				<p>Nothing here yet!</p>
+			<% else %>
+				<%= will_paginate @mp2 %>
+				<%= render "macroposts/macroposts", :macroposts => @mp2 %>
+			<% end %>
+		</div>
+		<div id="updates-form">
+			<% if moderator_signed_in? %>
+				<% @meta = { :board => "misc", :section => "c" } %>
+				<%= render "macroposts/form", :macropost => @macropost, :moderator => @moderator, :meta => @meta %>
+			<% end %>
+		</div>
+		</div>
+</div>

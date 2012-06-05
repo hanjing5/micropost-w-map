@@ -1,0 +1,4 @@
+$("#main-content").html('<%= escape_javascript( render "pages/main-container", :purpose => @purpose, :rumors => @rumors, :person => @person ) %>');
+$("#secondary-content").html('<%= escape_javascript( render "pages/secondary-container", :purpose => @purpose, :person => @person ) %>');
+
+

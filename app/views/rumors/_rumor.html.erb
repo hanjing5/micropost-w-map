@@ -1,0 +1,36 @@
+<tr class="rumor">
+	<td class="rumor">
+		<span class="content">
+      <%= rumor.content %>
+      <% if not(current_user.nil?) %>
+
+        <% if current_user?(rumor.user_id) or current_user_admin? %>
+          <%= link_to "delete", rumor_path(rumor, :counter => rumor_counter), :method => :delete, :confirm => "You sure?" , :remote => true,
+                                 :title => "Delete #{rumor.title}" %>
+        <% end %>
+      <% end %>
+    </span>
+    <br>
+    <% if current_user.nil? %>
+  		<span class="location">
+  	    Spread by:  <%= rumor.username %>
+  		</span>
+    <% else %>
+      <% if rumor.user_id == current_user.id %>
+    		<span class="location">
+  	  		Spread by: Me
+  	  	</span>
+      <% else %> 
+     		<span class="location">
+  	  		Spread by:  <%= rumor.username %>
+    		</span>
+      <% end %>
+    <% end %>
+		<span class="location">
+			Spread around:  <%= rumor.latitude %>, <%= rumor.longitude %>
+		</span>
+		<span class="timestamp">
+			Spread <%= time_ago_in_words(rumor.created_at) %> ago. Num <%= rumor_counter %>
+		</span>
+	</td>
+</tr>

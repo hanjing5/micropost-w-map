@@ -1,0 +1,24 @@
+<!-- Index page for showing people -->
+<div class="hero-unit">
+	<h3>The People Index</h3>
+	<% if moderator_signed_in? %>
+		<h5>Welcome back, master</h5>
+	<% else %>
+		<h5>People Index...</h5>
+		<p>Please don't request this page too often as this will slow the site down for everyone.</p>
+		<p>Anyway, consider leaving</p>
+	<% end %>
+	<%= link_to "Go Back", root_path, :class => "btn primary large" %>
+</div>
+
+<div class="row">
+<%= will_paginate @people %>
+<% @people.each do |person| %>
+	<div id="person-id-<%= person.id %>">
+		<%= render "people/preview", :person => person %>
+		<% if moderator_signed_in? %>
+			<%= link_to "delete person", person_path(person), :method => :delete, :remote => true %>
+		<% end %>
+	</div>
+<% end %>
+</div>

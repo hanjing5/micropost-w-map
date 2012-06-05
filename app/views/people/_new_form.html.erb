@@ -1,0 +1,69 @@
+<!-- Variables in this hellhole: search, person -->
+<h2>New Rumor Profile!</h2>
+<ul class="spread_form">
+<%= form_for person do |f| %>
+	<!-- Usually necessary sections -->
+	<li>
+		<%= f.label "Name (required)" %>
+		<%= f.text_field :name %>
+	</li>
+	<li>
+		<%= f.label "facebook (optional)" %>
+		<%= f.text_field :facebook %>
+	</li>
+	<li>
+		<%= f.label "twitter (optional)" %>
+		<%= f.text_field :twitter %>
+	</li>
+	<li>
+		<%= f.label "linkedin (optional)" %>
+		<%= f.text_field :linkedin %>
+	</li>
+	<li>
+		<%= f.label "tumblr (optional)" %>
+		<%= f.text_field :tumblr %>
+	</li>
+	<li>
+		<%= f.label "wikipedia (optional)" %>
+		<%= f.text_field :wikipedia %>
+	</li>
+	<!-- Invisible sections -->
+	<%= hidden_field_tag "person[type]", "advanced" %>
+	<%= hidden_field_tag "person[latitude]", search[:latitude] unless search[:latitude].nil? %>
+	<%= hidden_field_tag "person[longitude]", search[:longitude] unless search[:longitude].nil? %>
+	<%= hidden_field_tag "person[ip]", search[:ip] unless search[:ip].nil? %>
+	<!-- Potentially unavailible sections -->
+	<li>
+		<%= label_tag "Nickname (optional)" %>
+		<%= phone_field_tag "person[nickname]",  search[:nickname].nil? ? "" : search[:nickname] %>
+	</li>
+	<li>
+		<%= label_tag "Phone (optional)" %>
+		<%= phone_field_tag "person[phone]",  search[:phone].nil? ? "" : search[:phone] %>
+	</li>
+	<li>
+		<%= label_tag "Email (optional)" %>
+		<%= text_field_tag "person[email]", search[:email].nil? ? "" : search[:email] %>
+	</li>
+	<li>
+		<%= label_tag "Country (optional)" %>
+		<%= text_field_tag "person[country]",  search[:country].nil? ? "" : search[:country] %>
+	</li>
+	<li>
+		<%= label_tag "State (optional)" %>
+		<%= text_field_tag "person[state]",  search[:state].nil? ? "" : search[:state] %>
+	</li>
+	<li>
+		<%= label_tag "City (optional)" %>
+		<%= text_field_tag "person[city]",  search[:city].nil? ? "" : search[:city] %>
+	</li>	
+	<li>
+		<%= label_tag "Address (optional)" %>
+		<%= text_field_tag "person[address]",  search[:address].nil? ? "" : search[:address] %>
+	</li>
+	<li>
+		<%= f.submit "Start New", :class => "btn primary" %>
+	</li>
+<% end %>
+</ul>
+
